@@ -5,7 +5,7 @@ import React from 'react'
 
 function Greeting() {
   const [name, setName] = React.useState(
-    window.localStorage.getItem('name') || ''
+    () => window.localStorage.getItem('name') || ''
   );
 
   React.useEffect(() => {
