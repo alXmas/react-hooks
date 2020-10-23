@@ -3,18 +3,23 @@
 
 import React from 'react'
 
-function Greeting({initialName = ''}) {
-  // 🐨 initialize the state to the value from localStorage
-  // 💰 window.localStorage.getItem('name') || initialName
-  const [name, setName] = React.useState(initialName)
+function Greeting() {
+  // using useState
+  const [name, setName] = React.useState(
+    // we are getting the name from localStorage or default to empty string
+    window.localStorage.getItem('name') || ''
+  );
 
-  // 🐨 Here's where you'll use `React.useEffect`.
-  // The callback should set the `name` in localStorage.
-  // 💰 window.localStorage.setItem('name', name)
+  // The Effect Hook lets you perform side effects in function components
+  // Load every time the Greeting() is rendered
+  React.useEffect(() => {
+    // The read-only localStorage property allows you to access a Storage object for the
+    // document's origin; the stored data is saved across browser sessions.
+    window.localStorage.setItem('name', name);
+  });
 
-  function handleChange(event) {
-    setName(event.target.value)
-  }
+  const handleChange = event => setName(event.target.value);
+  
   return (
     <div>
       <form>
