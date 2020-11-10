@@ -5,7 +5,7 @@ import React from 'react'
 
 function Greeting() {
   const [name, setName] = React.useState(
-    window.localStorage.getItem('name') || ''
+    () => window.localStorage.getItem('name') || ''
   );
 
   React.useEffect(() => {
@@ -13,6 +13,7 @@ function Greeting() {
   });
 
   const handleChange = event => setName(event.target.value);
+
   return (
     <div>
       <form>
