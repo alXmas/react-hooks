@@ -3,14 +3,14 @@
 
 import React from 'react'
 
-function Greeting() {
-  const [name, setName] = React.useState('')
+function Greeting({initialName = 'Xmas'}) {
+  const [name, setName] = React.useState(initialName)
   const handleChange = event => setName(event.target.value)
   return (
     <div>
       <form>
         <label htmlFor="name">Name: </label>
-        <input onChange={handleChange} id="name" />
+        <input value={name} onChange={handleChange} id="name" />
       </form>
       {name ? <strong>Hello {name}</strong> : 'Enter your name'}
     </div>
